@@ -1,0 +1,34 @@
+
+lostworld21's avatar
+lostworld21
+61
+August 18, 2019 11:43 PM
+
+25 VIEWS
+
+def findDiagonalOrder(self, matrix):
+    """
+    :type matrix: List[List[int]]
+    :rtype: List[int]
+    """
+    M = len(matrix)
+    if M == 0:
+        return []
+    N = len(matrix[0])
+    mp = { }
+    for i in range(M):
+        for j in range(N):
+            if i+j in mp:
+                mp[i+j].append(matrix[i][j])
+            else:
+                mp[i+j] = [matrix[i][j]]
+    
+    rs = []
+    rev = True
+    print(mp)
+    for i in range(0, M+N-1):
+        if rev:
+            mp[i] = mp[i][::-1]
+        rev = not rev
+        rs.extend(mp[i])
+    return rs
