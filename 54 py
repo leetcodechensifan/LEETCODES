@@ -1,0 +1,49 @@
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        if(len(matrix)==0):
+            return []
+        m=len(matrix)
+        n=len(matrix[0])
+        length=m*n
+        newl=[0 for i in range(m*n)]
+        newmatrix=[[0 for i in range(n)] for j in range(m)]
+        px=0
+        py=0
+        index=1
+        model=0
+        newl[0]=matrix[0][0]
+        newmatrix[0][0]=1
+        while(1):
+            if index>=length:
+                break
+
+            if(model==0):
+                if(py+1>=n or newmatrix[px][py+1]==1):
+                    model=1
+                    continue
+                else:
+                    py+=1;
+            elif(model==1):
+                if (px + 1 >= m or newmatrix[px+1][py] == 1):
+                    model = 2;
+                    continue
+                else:
+                    px += 1;
+            elif(model==2):
+                if (py - 1 <0 or newmatrix[px][py-1] == 1):
+                    model = 3;
+                    continue
+                else:
+                    py -= 1;
+            elif(model==3):
+                if(px-1<0 or newmatrix[px-1][py]==1):
+                    model=0;
+                    continue
+                else:
+                    px-=1;
+           
+            newl[index] = matrix[px][py]
+            index += 1;
+            newmatrix[px][py] = 1
+           
+        return newl
