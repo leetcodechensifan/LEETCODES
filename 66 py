@@ -1,0 +1,35 @@
+from typing import List
+
+
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        lenth= len(digits)
+        digits[len(digits)-1]+=1
+        piv=1
+        while(1):
+            print(piv)
+            if(digits[lenth-piv]==10):
+                        digits[lenth-piv]=0;
+                        if(lenth-piv-1>=0):
+                              digits[lenth-piv-1]+=1;
+                              
+                        else:
+                            digits.insert(0,1);
+                            break
+            else:
+                break
+               
+            piv+=1                
+        return digits
+
+
+                            
+
+
+
+
+
+
+
+
+
