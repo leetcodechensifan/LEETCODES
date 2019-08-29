@@ -5,3 +5,13 @@ class Solution(object):
             return 
       
         nums[:]=nums[len(nums)-k:]+nums[:len(nums)-k]
+        
+        
+        
+   class Solution(object):
+    def rotate(self, nums, k):
+        l = len(nums)
+        if k>0:
+            if k > l:
+                k %= l
+            nums[:] = nums[l-k:] + nums[:l-k]
