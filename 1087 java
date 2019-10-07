@@ -1,0 +1,30 @@
+class Solution {
+
+    public String[] expand(String S) {
+        if(S == null || S.length() == 0) return new String[]{""};
+         int i=0;
+         String[] prefixes=null;
+         if(S.charAt(i)=='{'){
+             String temp=S.substring(1,S.indexOf('}'));
+             prefixes=temp.split(",");
+             Arrays.sort(prefixes);
+             i=S.indexOf('}')+1;
+         }
+         String prefix="";
+         while(prefixes==null&&i<S.length()&&S.charAt(i)!='{'){
+             prefix+=S.charAt(i);
+             i++;
+         }
+if(!prefix.equals(""))
+    prefixes=new String[]{prefix};
+         String[] next=expand(S.substring(i));
+String[] ans=new String[prefixes.length* next.length];
+int index=0;
+for (String j:prefixes)
+    for(String k:next)
+        ans[index++]=j+k;
+return ans;
+    }
+
+
+}
